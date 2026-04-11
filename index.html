@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultural Proverbs & Wisdom Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Cultural Proverbs & Wisdom Hub</h1>
+    <button id="toggle-favorites">View Favorites Only</button>
+  </header>
+
+  <!-- Sidebar for desktop -->
+  <aside>
+    <h2>Search & Filter</h2>
+    <input type="text" id="search" placeholder="Search proverbs...">
+    <div class="filters">
+      <label for="category">Category Filter</label>
+      <select id="category">
+        <option value="">All</option>
+        <option value="wisdom">Wisdom</option>
+        <option value="family">Family</option>
+        <option value="community">Community</option>
+      </select>
+
+      <label for="region">Region Filter</label>
+      <select id="region">
+        <option value="">All</option>
+        <option value="yoruba">Yoruba</option>
+      </select>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main id="proverb-list">
+    <!-- Proverbs will be dynamically loaded here -->
+  </main>
+
+  <!-- Favorites section -->
+  <section id="favorites-section">
+    <h2>My Favorite Yoruba Proverbs</h2>
+    <div id="favorites-list"></div>
+  </section>
+
+  <!-- Footer with cultural video -->
+  <footer>
+    <h2>Cultural Video</h2>
+    <div id="video-section">
+      <p>Video content coming soon...</p>
+    </div>
+    <p>&copy; 2026 Proverbs Hub</p>
+  </footer>
+
+  <!-- JavaScript entry -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

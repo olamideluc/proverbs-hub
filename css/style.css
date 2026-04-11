@@ -1,0 +1,164 @@
+/* Base styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f6f1;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #8b5e3c;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+#toggle-favorites {
+  background-color: #8b5e3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#toggle-favorites:hover {
+  background-color: #a66b47;
+}
+
+/* Sidebar (mobile hidden by default) */
+aside {
+  display: none;
+}
+
+/* Search input */
+#search {
+  width: 90%;
+  max-width: 400px;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Main proverb list */
+#proverb-list {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+/* Proverb card */
+.proverb-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.proverb-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.proverb-card p {
+  margin: 0.5rem 0 0;
+}
+
+.favorite {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #8b5e3c;
+}
+
+/* Favorites section */
+#favorites-section {
+  background-color: #fff8e7;
+  border-top: 3px solid #8b5e3c;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+#favorites-section h2 {
+  color: #8b5e3c;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+#favorites-list {
+  display: grid;
+  gap: 1rem;
+}
+
+#favorites-list .proverb-card {
+  background: #fff;
+  border: 2px solid #8b5e3c;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+#favorites-list .remove-fav {
+  background: #8b5e3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#favorites-list .remove-fav:hover {
+  background: #a66b47;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #ddd;
+}
+
+/* Responsive desktop layout */
+@media (min-width: 768px) {
+  body {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
+  }
+
+  header {
+    grid-area: header;
+  }
+
+  aside {
+    grid-area: sidebar;
+    display: block;
+    background-color: #eee;
+    padding: 1rem;
+  }
+
+  #proverb-list {
+    grid-area: main;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  footer {
+    grid-area: footer;
+  }
+
+  #favorites-list {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
