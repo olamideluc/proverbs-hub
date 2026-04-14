@@ -1,3 +1,5 @@
+import { fetchProverbs, translateProverb, fetchCulturalVideo } from './api.js';
+
 let showFavoritesOnly = false;
 
 function getFavorites() {
@@ -11,8 +13,7 @@ function saveFavorites(favorites) {
 export async function loadProverbs() {
   const container = document.getElementById('proverb-list');
   try {
-    const response = await fetch('data/proverbs.json');
-    const proverbs = await response.json();
+    const proverbs = await fetchProverbs();
 
     renderProverbs(proverbs);
     renderFavorites();
@@ -59,12 +60,24 @@ export async function loadProverbs() {
       renderProverbs(filtered);
     });
 
+    // Fetch and embed a cultural video
+    const video = await fetchCulturalVideo("Yoruba proverbs");
+    if (video) {
+      const videoContainer = document.getElementById('video-section');
+      videoContainer.innerHTML = `
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/${video.id.videoId}"
+          frameborder="0" allowfullscreen>
+        </iframe>
+      `;
+    }
+
   } catch (error) {
     container.innerHTML = '<p>Error loading proverbs.</p>';
   }
 }
 
-function renderProverbs(list) {
+async function renderProverbs(list) {
   const container = document.getElementById('proverb-list');
   container.innerHTML = '';
 
@@ -75,16 +88,25 @@ function renderProverbs(list) {
     return;
   }
 
-  list.forEach(item => {
+  for (const item of list) {
     const card = document.createElement('div');
     card.className = 'proverb-card';
 
     const isFavorite = favorites.some(fav => fav.text === item.text);
 
+    // Translate proverb text (optional)
+    let translation = "";
+    try {
+      translation = await translateProverb(item.text, 'en');
+    } catch {
+      translation = "";
+    }
+
     card.innerHTML = `
       <div>
         <h3>${item.text}</h3>
         <p>${item.explanation}</p>
+        ${translation ? `<p><em>Translation: ${translation}</em></p>` : ""}
       </div>
       <button class="favorite">${isFavorite ? '❤️' : '♡'}</button>
     `;
@@ -105,7 +127,7 @@ function renderProverbs(list) {
     });
 
     container.appendChild(card);
-  });
+  }
 }
 
 function renderFavorites() {
