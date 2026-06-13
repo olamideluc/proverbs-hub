@@ -164,3 +164,4 @@ function renderFavorites() {
     favoritesContainer.appendChild(card);
   });
 }
+/*done*/
